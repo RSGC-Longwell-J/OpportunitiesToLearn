@@ -11,7 +11,7 @@
  */
 
 // Add your code below
-func levelCost(heights: [Int], maxJump: Int) -> Int
+func levelCost(heights: [Int], maxJump: Int) -> Int{
 
 var previousheight = 0
 
@@ -20,6 +20,7 @@ var energy = 0
 
 
 for i in heights{
+    
     var jumpheight = previousheight - i
     
     if previousheight == 0 {
@@ -27,29 +28,29 @@ for i in heights{
         previousheight = i
     }
     
-} else {
+else {
     
     
     
-    if jumpheight < 0{
+    if jumpheight < 0 {
         jumpheight = -jumpheight
     }
     
-    if jumpHeight > maxJump {
+    if jumpheight > maxJump {
         return -1
     }
     
-    if jumpHeight == 0 {
-        totalEnergy += 1
+    if jumpheight == 0 {
+        energy += 1
     } else {
-        Energy += 2 * jumpHeight
+        energy += 2 * jumpheight
     }
     
     previousheight = i
 }
 }
 
-return totalEnergy
+return energy
 }
 
 
