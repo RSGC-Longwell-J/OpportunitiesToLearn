@@ -9,29 +9,31 @@ let midPoint = CGPoint(x: frame.size.width / 2.0, y: frame.size.height / 2.0)
 
 var scene = SKScene(size: frame.size)
 
-let nyanCat = SKSpriteNode(imageNamed: "Chad_1Face")
-nyanCat.position = CGPoint(x: (frame.size.width / 2.0)-50, y: frame.size.height / 2.0)
-nyanCat.setScale(0.1)
+let Chad = SKSpriteNode(imageNamed: "Chad_1Face")
+Chad.position = CGPoint(x: (frame.size.width / 2.0)-50, y: frame.size.height / 2.0)
+Chad.setScale(0.1)
 
 let background = SKSpriteNode(imageNamed: "Photograph")
-background.position = CGPoint(x: (frame.size.width / 2.0)-50, y: frame.size.height / 2.0)
+background.position = CGPoint(x: (frame.size.width / 2.0), y: frame.size.height / 2.0)
+background.setScale(0.6)
 
 let actionMoveUp1 = SKAction.moveBy(x: 0, y: 100, duration: 1)
 let actionMoveDown1 = SKAction.moveBy(x: 0, y: -100, duration: 1)
-let actionMoveUp2 = SKAction.moveBy(x: 0, y: -100, duration: 1)
-let actionMoveDown2 = SKAction.moveBy(x: 0, y: 100, duration: 1)
+
 
 let actionSequence1 = SKAction.sequence([actionMoveUp1, actionMoveDown1])
 
-let actionSequence2 = SKAction.sequence([actionMoveUp2, actionMoveDown2])
+
 
 let actionRepeat1 = SKAction.repeatForever(actionSequence1)
-let actionRepeat2 = SKAction.repeatForever(actionSequence2)
-nyanCat.run(actionRepeat1)
 
-nyanCat.run(actionRepeat2)
-nyanCat.zPosition = 10  // Ensure sprite is above background
-scene.addChild(nyanCat) // Add to the scene
+Chad.run(actionRepeat1)
+
+
+Chad.zPosition = 10  // Ensure sprite is above background
+scene.addChild(Chad) // Add to the scene
+//background.zPosition = 9
+scene.addChild(background)
 
 let emitter = SKEmitterNode()
 emitter.particleLifetime = 40
@@ -83,12 +85,12 @@ var yMultiplier : CGFloat = 0.5
 for rainbowColor in rainbowColors {
     let rainbowStripe = RainbowParticle(
         childOf: scene,
-        target: nyanCat,
+        target: Chad,
         color: rainbowColor,
         position:
         CGPoint(
-            x: nyanCat.calculateAccumulatedFrame().width * -0.3 + nyanCat.position.x,
-            y: nyanCat.calculateAccumulatedFrame().height * yMultiplier + nyanCat.position.y
+            x: Chad.calculateAccumulatedFrame().width * -0.3 + Chad.position.x,
+            y: Chad.calculateAccumulatedFrame().height * yMultiplier + Chad.position.y
         )
     )
     yMultiplier -= 0.15
